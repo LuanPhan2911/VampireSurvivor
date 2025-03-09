@@ -28,11 +28,11 @@ public class PlayerAnimation : MonoBehaviour
 
     private void FlipSprite()
     {
-        if (playerManager.playerMovement.lastDirectionX < 0)
+        if (playerManager.playerMovement.moveDirection.x < 0)
         {
             playerManager.spriteRenderer.flipX = true;
         }
-        else
+        else if (playerManager.playerMovement.moveDirection.x > 0)
         {
             playerManager.spriteRenderer.flipX = false;
         }
