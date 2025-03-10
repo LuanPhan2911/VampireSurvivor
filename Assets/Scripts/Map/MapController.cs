@@ -8,7 +8,6 @@ public class MapController : MonoBehaviour
     [SerializeField] private float checkRadius;
     [SerializeField] private int terrainSize;
     [SerializeField] private LayerMask terrainLayerMask;
-    private Vector3 noTerrainPosition;
 
     [HideInInspector] public GameObject currentChunk;
 
@@ -17,7 +16,7 @@ public class MapController : MonoBehaviour
     [Header("Optimizer")]
     public float maxDistance;
     [SerializeField] private List<Transform> chunkTransformList;
-    public float ptimizeTimerMax;
+    public float optimizeTimerMax;
     private float optimizeTimer;
 
     private void Awake()
@@ -40,17 +39,9 @@ public class MapController : MonoBehaviour
         {
             return;
         }
-        ChunkChecker(Vector2.up);
-        ChunkChecker(Vector2.down);
-        ChunkChecker(Vector2.left);
-        ChunkChecker(Vector2.right);
+        ChunkChecker();
 
-        ChunkChecker(Vector2.up + Vector2.left);
-        ChunkChecker(Vector2.down + Vector2.left);
-        ChunkChecker(Vector2.up + Vector2.right);
-        ChunkChecker(Vector2.down + Vector2.right);
-
-        if (optimizeTimer < ptimizeTimerMax)
+        if (optimizeTimer < optimizeTimerMax)
         {
             optimizeTimer += Time.deltaTime;
         }
@@ -61,25 +52,29 @@ public class MapController : MonoBehaviour
         }
 
     }
-    private void ChunkChecker(Vector2 direction)
+    private void ChunkChecker()
     {
         if (PlayerManager.Instance.playerMovement.moveDirection != Vector2.zero)
         {
 
-            Vector2 checkPosition = (Vector2)currentChunk.transform.position + direction * terrainSize;
-            if (!Physics2D.OverlapCircle(checkPosition, checkRadius, terrainLayerMask))
+            foreach (var direction in GetSideDirection(PlayerManager.Instance.playerMovement.moveDirection))
             {
-                noTerrainPosition = checkPosition;
-                SpawnChunk();
+                Vector2 checkPosition = (Vector2)currentChunk.transform.position + direction.normalized * terrainSize;
+
+                if (!Physics2D.OverlapPoint(checkPosition, terrainLayerMask))
+                {
+                    SpawnChunk(checkPosition);
+                }
             }
+
         }
 
     }
-    private void SpawnChunk()
+    private void SpawnChunk(Vector2 spawnPosition)
     {
         int randInt = Random.Range(0, chunkPrefabArray.Length);
         Transform chunkTransform = Instantiate(chunkPrefabArray[randInt], transform);
-        chunkTransform.position = noTerrainPosition;
+        chunkTransform.position = spawnPosition;
 
         chunkTransformList.Add(chunkTransform);
 
@@ -97,6 +92,17 @@ public class MapController : MonoBehaviour
                 chunkTransform.gameObject.SetActive(true);
             }
         }
+    }
+
+    private Vector2[] GetSideDirection(Vector2 direction)
+    {
+
+        // Determine perpendicular shift (left and right)
+        Vector2 leftShift = new Vector2(-direction.y, direction.x);
+        Vector2 rightShift = new Vector2(direction.y, -direction.x);
+
+        // Return an array of previous (left), current, and next (right) directions
+        return new Vector2[] { direction + leftShift, direction, direction + rightShift };
     }
 
 }

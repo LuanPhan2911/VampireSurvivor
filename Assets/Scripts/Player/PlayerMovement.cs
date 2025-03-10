@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [HideInInspector] public Vector2 moveDirection;
+    public Vector2 lastDirection;
 
 
 
@@ -27,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
 
         moveDirection.x = Input.GetAxisRaw("Horizontal");
         moveDirection.y = Input.GetAxisRaw("Vertical");
+        if (moveDirection != Vector2.zero)
+        {
+            lastDirection = new Vector2(moveDirection.x, moveDirection.y);
+        }
 
 
     }

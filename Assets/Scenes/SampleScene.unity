@@ -122,6 +122,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &298901018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 298901019}
+  - component: {fileID: 298901020}
+  m_Layer: 0
+  m_Name: SwordController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &298901019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298901018}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 455728672}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &298901020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298901018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fdd688a9b2a7544cbba6912570b0635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPrefab: {fileID: 8911173038773065025, guid: a492052b523be2f40868b3be02c45f7a, type: 3}
+  damaged: 0
+  speed: 5
+  cooldownDuration: 2
+  pierce: 0
 --- !u!1 &378234860
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunkPrefabArray:
   - {fileID: 447523814908542637, guid: 878fd501ea51e914e97460a285d65d67, type: 3}
-  checkRadius: 0.3
+  checkRadius: 0.05
   terrainSize: 20
   terrainLayerMask:
     serializedVersion: 2
@@ -162,7 +211,7 @@ MonoBehaviour:
   maxDistance: 50
   chunkTransformList:
   - {fileID: 2012569746}
-  ptimizeTimerMax: 2
+  optimizeTimerMax: 1
 --- !u!4 &378234862
 Transform:
   m_ObjectHideFlags: 0
@@ -242,7 +291,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -839478912, guid: 76a87443cef5e574aad172d86657e768, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -263,10 +312,11 @@ Transform:
   m_GameObject: {fileID: 455728670}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8074534, y: 0.22774202, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 298901019}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &455728673
@@ -301,7 +351,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.22752783}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -312,7 +362,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.48, y: 1.16}
+  m_Size: {x: 0.48, y: 0.70494443}
   m_EdgeRadius: 0
 --- !u!50 &455728674
 Rigidbody2D:
@@ -355,6 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   moveDirection: {x: 0, y: 0}
+  lastDirection: {x: 1, y: 0}
 --- !u!95 &455728676
 Animator:
   serializedVersion: 5
@@ -564,9 +615,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1129725945720199315, guid: 878fd501ea51e914e97460a285d65d67, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223491392750310303, guid: 878fd501ea51e914e97460a285d65d67, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3530337871286714113, guid: 878fd501ea51e914e97460a285d65d67, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821464607755768094, guid: 878fd501ea51e914e97460a285d65d67, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973933962214508287, guid: 878fd501ea51e914e97460a285d65d67, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6648237356761418351, guid: 878fd501ea51e914e97460a285d65d67, type: 3}
       propertyPath: m_Name
       value: TerrainChunk
+      objectReference: {fileID: 0}
+    - target: {fileID: 6648237356761418351, guid: 878fd501ea51e914e97460a285d65d67, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7100678614961940134, guid: 878fd501ea51e914e97460a285d65d67, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414472795968951990, guid: 878fd501ea51e914e97460a285d65d67, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468242727177674261, guid: 878fd501ea51e914e97460a285d65d67, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140694528684444881, guid: 878fd501ea51e914e97460a285d65d67, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
