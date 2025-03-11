@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class BaseWeaponBehaviour : MonoBehaviour
+public class BaseProjectileWeaponBehaviour : MonoBehaviour
 {
     protected Vector3 direction;
     public float destroyAfterSeconds;
@@ -78,19 +78,26 @@ public class BaseWeaponBehaviour : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(EnemyController.enemyTag))
-        {
-            EnemyController enemyController = collision.GetComponent<EnemyController>();
+        //if (collision.CompareTag(EnemyController.ENEMY_TAG))
+        //{
+        //    EnemyController enemyController = collision.GetComponent<EnemyController>();
 
-            enemyController.EnemyStat.TakeDamage(currentDamage);
-            RecudePierce();
+        //    enemyController.EnemyStat.TakeDamage(currentDamage);
+        //    RecudePierce();
+        //}
+
+        if (collision.TryGetComponent<ITakeDamageable>(out var damageable))
+        {
+
+            damageable.TakeDamage(currentDamage);
+            ReducePierce();
         }
     }
 
-    private void RecudePierce()
+    private void ReducePierce()
     {
         currentPierce--;
-        if (currentPierce < 0)
+        if (currentPierce <= 0)
         {
             Destroy(gameObject);
         }

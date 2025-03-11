@@ -166,11 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fdd688a9b2a7544cbba6912570b0635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 8911173038773065025, guid: a492052b523be2f40868b3be02c45f7a, type: 3}
-  damaged: 0
-  speed: 10
-  cooldownDuration: 2
-  pierce: 0
+  weaponSO: {fileID: 11400000, guid: 6c5de1ec879fc93429e7279e505f8878, type: 2}
 --- !u!1 &378234860
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,10 +236,12 @@ GameObject:
   - component: {fileID: 455728671}
   - component: {fileID: 455728674}
   - component: {fileID: 455728673}
-  - component: {fileID: 455728675}
   - component: {fileID: 455728676}
   - component: {fileID: 455728678}
+  - component: {fileID: 455728675}
   - component: {fileID: 455728677}
+  - component: {fileID: 455728679}
+  - component: {fileID: 455728680}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -404,7 +402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4e7d33fb6b7f741b877bfd36bbb067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   moveDirection: {x: 0, y: 0}
   lastDirection: {x: 1, y: 0}
 --- !u!95 &455728676
@@ -456,6 +453,49 @@ MonoBehaviour:
   playerAnimation: {fileID: 0}
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  playerStat: {fileID: 0}
+  characterSO: {fileID: 11400000, guid: e393d472f49df80449e3b2eccdd4a553, type: 2}
+--- !u!114 &455728679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455728670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24a6bedd9bad38e46be01757ff9b4d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experience: 0
+  level: 1
+  experienceCap: 0
+  levelRangeList:
+  - startLevel: 1
+    endLevel: 2
+    experienceCapIncreased: 5
+  - startLevel: 3
+    endLevel: 20
+    experienceCapIncreased: 10
+  - startLevel: 21
+    endLevel: 40
+    experienceCapIncreased: 13
+  - startLevel: 41
+    endLevel: 9999
+    experienceCapIncreased: 16
+  takeDamagedTimerMax: 0.5
+--- !u!114 &455728680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455728670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e288bc4dacb2494e8578faf45b8c77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,11 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ad00ad5c35ea143b137df461c593a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 820125823678244308, guid: cb2a3e74aa1817a48aceeddfb474ef58, type: 3}
-  damaged: 0
-  speed: 0
-  cooldownDuration: 3
-  pierce: 0
+  weaponSO: {fileID: 11400000, guid: e681d5cafa716d440b14e0b4a9685a95, type: 2}
 --- !u!4 &2012569746 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 447523814908542637, guid: 878fd501ea51e914e97460a285d65d67, type: 3}

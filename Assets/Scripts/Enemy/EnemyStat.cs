@@ -1,24 +1,22 @@
 using UnityEngine;
 
-public class EnemyStat : MonoBehaviour
+public class EnemyStat : MonoBehaviour, ITakeDamageable
 {
     private EnemyController enemyController;
 
     private float currentHp;
-    private float currentDamage;
-
-
 
     private void Awake()
     {
         enemyController = GetComponent<EnemyController>();
 
         currentHp = enemyController.enemyStatSO.maxHp;
-        currentDamage = enemyController.enemyStatSO.damgage;
+
     }
 
     public void TakeDamage(float damage)
     {
+
         currentHp -= damage;
         if (currentHp <= 0)
         {
@@ -29,6 +27,8 @@ public class EnemyStat : MonoBehaviour
 
     private void Kill()
     {
+        gameObject.GetComponent<DropRateManager>().SpawnItem();
         Destroy(gameObject);
+
     }
 }

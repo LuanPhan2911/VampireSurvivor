@@ -29,11 +29,15 @@ public class BaseMeleeWeaponBehaviour : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(EnemyController.enemyTag))
-        {
-            EnemyController enemyController = collision.GetComponent<EnemyController>();
+        //if (collision.CompareTag(EnemyController.ENEMY_TAG))
+        //{
+        //    EnemyController enemyController = collision.GetComponent<EnemyController>();
 
-            enemyController.EnemyStat.TakeDamage(currentDamage);
+        //    enemyController.EnemyStat.TakeDamage(currentDamage);
+        //}
+        if (collision.TryGetComponent<ITakeDamageable>(out var damageable))
+        {
+            damageable.TakeDamage(currentDamage);
 
         }
     }

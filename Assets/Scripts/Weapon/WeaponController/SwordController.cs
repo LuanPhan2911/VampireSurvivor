@@ -6,7 +6,7 @@ public class SwordController : BaseWeaponController
         base.Attack();
         Transform swordTransform = Instantiate(weaponSO.transformPrefab);
         swordTransform.transform.position = transform.position;
-        BaseWeaponBehaviour swordBehaviour = swordTransform.GetComponent<BaseWeaponBehaviour>();
+        BaseProjectileWeaponBehaviour swordBehaviour = swordTransform.GetComponent<BaseProjectileWeaponBehaviour>();
 
         swordBehaviour.SetDirection(PlayerManager.Instance.playerMovement.lastDirection.normalized);
 

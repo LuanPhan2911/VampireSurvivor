@@ -3,10 +3,13 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
 
+    public const string PLAYER_TAG = "Player";
     [HideInInspector] public PlayerMovement playerMovement;
     [HideInInspector] public PlayerAnimation playerAnimation;
     [HideInInspector] public Animator animator;
     [HideInInspector] public SpriteRenderer spriteRenderer;
+    [HideInInspector] public PlayerStat playerStat;
+    public CharacterSO characterSO;
 
     public static PlayerManager Instance;
 
@@ -27,5 +30,6 @@ public class PlayerManager : MonoBehaviour
         playerAnimation = GetComponent<PlayerAnimation>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerStat = GetComponent<PlayerStat>();
     }
 }

@@ -6,14 +6,14 @@ public class ChunkTrigger : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag(PlayerManager.PLAYER_TAG))
         {
             MapController.Instance.currentChunk = targetChunk;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag(PlayerManager.PLAYER_TAG))
         {
             MapController.Instance.currentChunk = targetChunk;
         }

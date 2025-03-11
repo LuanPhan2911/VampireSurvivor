@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SwordBehaviour : BaseWeaponBehaviour
+public class SwordBehaviour : BaseProjectileWeaponBehaviour
 {
 
 

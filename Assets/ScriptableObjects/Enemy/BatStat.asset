@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f592db6078e7324fa06eac36639d903, type: 3}
   m_Name: BatStat
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  maxHp: 0
-  damgage: 0
+  moveSpeed: 2
+  maxHp: 10
+  damgage: 10

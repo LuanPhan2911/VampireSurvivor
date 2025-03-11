@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+
     [HideInInspector] public Vector2 moveDirection;
     public Vector2 lastDirection;
+    private PlayerManager playerManager;
 
 
 
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rd2d = GetComponent<Rigidbody2D>();
+        playerManager = GetComponent<PlayerManager>();
     }
     private void Update()
     {
@@ -37,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
-        rd2d.velocity = moveDirection.normalized * moveSpeed;
+        rd2d.velocity = moveDirection.normalized * playerManager.characterSO.moveSpeed;
     }
 
 }
