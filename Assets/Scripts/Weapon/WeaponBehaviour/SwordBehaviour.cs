@@ -8,6 +8,6 @@ public class SwordBehaviour : BaseWeaponBehaviour
     {
         base.Update();
 
-        transform.position += direction * controller.speed * Time.deltaTime;
+        transform.position += direction * weaponSO.speed * Time.deltaTime;
     }
 }

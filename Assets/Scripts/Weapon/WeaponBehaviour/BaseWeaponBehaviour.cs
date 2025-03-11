@@ -4,9 +4,22 @@ using UnityEngine;
 public class BaseWeaponBehaviour : MonoBehaviour
 {
     protected Vector3 direction;
-    protected BaseWeaponController controller;
     public float destroyAfterSeconds;
+    public WeaponSO weaponSO;
 
+
+    protected float currentDamage;
+    protected float currentSpeed;
+    protected float currentCooldownDuration;
+    protected int currentPierce;
+
+    protected virtual void Awake()
+    {
+        currentDamage = weaponSO.damage;
+        currentSpeed = weaponSO.speed;
+        currentCooldownDuration = weaponSO.cooldownDuration;
+        currentPierce = weaponSO.pierce;
+    }
     protected virtual void Start()
     {
         Destroy(gameObject, destroyAfterSeconds);
@@ -62,10 +75,27 @@ public class BaseWeaponBehaviour : MonoBehaviour
         transform.localScale = scale;
         transform.rotation = Quaternion.Euler(rotation);    //Can't simply set the vector because cannot convert
     }
-    public void SetControler(BaseWeaponController controller)
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        this.controller = controller;
+        if (collision.CompareTag(EnemyController.enemyTag))
+        {
+            EnemyController enemyController = collision.GetComponent<EnemyController>();
+
+            enemyController.EnemyStat.TakeDamage(currentDamage);
+            RecudePierce();
+        }
     }
+
+    private void RecudePierce()
+    {
+        currentPierce--;
+        if (currentPierce < 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
 
 

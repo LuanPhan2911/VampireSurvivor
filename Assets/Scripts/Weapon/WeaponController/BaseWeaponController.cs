@@ -2,17 +2,13 @@ using UnityEngine;
 
 public class BaseWeaponController : MonoBehaviour
 {
-    public Transform weaponPrefab;
-    public float damaged;
-    public float speed;
-    public float cooldownDuration;
-    public int pierce;
+    public WeaponSO weaponSO;
     protected float currentCooldown;
 
 
     protected virtual void Start()
     {
-        currentCooldown = cooldownDuration;
+        currentCooldown = weaponSO.cooldownDuration;
     }
     protected virtual void Update()
     {
@@ -23,7 +19,7 @@ public class BaseWeaponController : MonoBehaviour
         else
         {
             Attack();
-            currentCooldown = cooldownDuration;
+            currentCooldown = weaponSO.cooldownDuration;
         }
     }
     protected virtual void Attack()

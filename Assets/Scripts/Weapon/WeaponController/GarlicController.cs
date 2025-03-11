@@ -7,6 +7,6 @@ public class GarlicController : BaseWeaponController
     {
         base.Attack();
 
-        Transform garlicTransform = Instantiate(weaponPrefab, transform);
+        Transform garlicTransform = Instantiate(weaponSO.transformPrefab, transform);
     }
 }
