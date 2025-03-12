@@ -5,7 +5,7 @@ public class PlayerStat : MonoBehaviour
 {
 
     [Header("Player Stats")]
-    private CharacterSO characterSO;
+    [SerializeField] private CharacterSO characterSO;
     public float currentHp;
     public float currentRecovery;
     public float currentMight;
@@ -33,10 +33,16 @@ public class PlayerStat : MonoBehaviour
 
     private List<GameObject> spawnedWeaponList;
 
+
     private void Awake()
     {
-        characterSO = CharacterSelection.Instance.GetSelectionCharacterSO();
-        CharacterSelection.Instance.Destroy();
+        // for development
+        if (CharacterSelection.Instance?.GetSelectionCharacterSO())
+        {
+            characterSO = CharacterSelection.Instance.GetSelectionCharacterSO();
+            CharacterSelection.Instance.Destroy();
+        }
+
 
         currentHp = characterSO.maxHp;
         currentMight = characterSO.might;

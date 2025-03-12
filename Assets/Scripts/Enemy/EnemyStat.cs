@@ -4,21 +4,29 @@ public class EnemyStat : MonoBehaviour, ITakeDamageable
 {
 
     [Header("Enemy Stats")]
-    public EnemyStatSO enemyStatSO;
+    public EnemySO enemySO;
     public float currentHp;
     public float currentMoveSpeed;
     public float currentDamage;
+
+    public float despawnDistance = 20;
 
     private void Awake()
     {
 
 
-        currentHp = enemyStatSO.maxHp;
-        currentMoveSpeed = enemyStatSO.moveSpeed;
-        currentDamage = enemyStatSO.damgage;
+        currentHp = enemySO.maxHp;
+        currentMoveSpeed = enemySO.moveSpeed;
+        currentDamage = enemySO.damgage;
 
     }
-
+    private void Update()
+    {
+        if (Vector2.Distance(PlayerManager.Instance.transform.position, transform.position) > despawnDistance)
+        {
+            MoveEnemyNearlyPlayer();
+        }
+    }
     public void TakeDamage(float damage)
     {
 
@@ -33,7 +41,13 @@ public class EnemyStat : MonoBehaviour, ITakeDamageable
     private void Kill()
     {
         gameObject.GetComponent<DropRateManager>().SpawnItem();
+        EnemySpawner.Instance.OnEnemyKilled();
         Destroy(gameObject);
+    }
 
+    private void MoveEnemyNearlyPlayer()
+    {
+        transform.position = PlayerManager.Instance.transform.position +
+                      EnemySpawner.Instance.spawnEnemyPositionList[Random.Range(0, EnemySpawner.Instance.spawnEnemyPositionList.Count)].position;
     }
 }
