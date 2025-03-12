@@ -78,6 +78,7 @@ public class BaseProjectileWeaponBehaviour : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
+
         //if (collision.CompareTag(EnemyController.ENEMY_TAG))
         //{
         //    EnemyController enemyController = collision.GetComponent<EnemyController>();

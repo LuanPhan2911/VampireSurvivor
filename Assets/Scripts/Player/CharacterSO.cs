@@ -10,4 +10,5 @@ public class CharacterSO : ScriptableObject
     public float might;
 
     public float projectileSpeed;
+    public float magnet;
 }

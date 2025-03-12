@@ -5,12 +5,10 @@ public class EnemyMovement : MonoBehaviour
 
     private EnemyController enemyController;
 
-    private float currentMoveSpeed;
+
     private void Awake()
     {
         enemyController = GetComponent<EnemyController>();
-
-        currentMoveSpeed = enemyController.enemyStatSO.moveSpeed;
     }
 
 
@@ -24,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector3 targetPosition = PlayerManager.Instance.transform.position;
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, currentMoveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition,
+           enemyController.EnemyStat.currentMoveSpeed * Time.deltaTime);
     }
 }

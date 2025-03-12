@@ -1,12 +1,10 @@
-using UnityEngine;
-
-public class HealthPotion : MonoBehaviour, ICollectable
+public class HealthPotion : Pickup, ICollectable
 {
     public float restoreHealthAmount;
     public void Collect()
     {
         PlayerManager.Instance.playerStat.RestoreHealth(restoreHealthAmount);
-        Destroy(gameObject);
+
     }
 
 

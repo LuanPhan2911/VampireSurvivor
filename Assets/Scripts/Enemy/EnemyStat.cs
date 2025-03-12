@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class EnemyStat : MonoBehaviour, ITakeDamageable
 {
-    private EnemyController enemyController;
 
-    private float currentHp;
+    [Header("Enemy Stats")]
+    public EnemyStatSO enemyStatSO;
+    public float currentHp;
+    public float currentMoveSpeed;
+    public float currentDamage;
 
     private void Awake()
     {
-        enemyController = GetComponent<EnemyController>();
 
-        currentHp = enemyController.enemyStatSO.maxHp;
+
+        currentHp = enemyStatSO.maxHp;
+        currentMoveSpeed = enemyStatSO.moveSpeed;
+        currentDamage = enemyStatSO.damgage;
 
     }
 

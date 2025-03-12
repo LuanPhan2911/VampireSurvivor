@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     public EnemyAnimation EnemyAnimation { get; private set; }
 
     public Animator animator;
-    public EnemyStatSO enemyStatSO;
+
 
 
 

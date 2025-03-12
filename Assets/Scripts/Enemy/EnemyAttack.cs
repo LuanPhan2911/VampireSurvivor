@@ -4,11 +4,11 @@ public class EnemyAttack : MonoBehaviour
 {
     private EnemyController enemyController;
 
-    private float currentDamage;
+
     private void Awake()
     {
         enemyController = GetComponent<EnemyController>();
-        currentDamage = enemyController.enemyStatSO.damgage;
+
     }
 
 
@@ -16,7 +16,8 @@ public class EnemyAttack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(PlayerManager.PLAYER_TAG))
         {
-            PlayerManager.Instance.playerStat.TakeDamge(currentDamage);
+            PlayerManager.Instance.playerStat.TakeDamge(
+                enemyController.EnemyStat.currentDamage);
         }
     }
 

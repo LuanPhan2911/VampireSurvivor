@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public Animator animator;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public PlayerStat playerStat;
-    public CharacterSO characterSO;
+
 
     public static PlayerManager Instance;
 

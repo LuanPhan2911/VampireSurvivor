@@ -28,8 +28,10 @@ public class PlayerMovement : MonoBehaviour
     private void HandleInput()
     {
 
+
         moveDirection.x = Input.GetAxisRaw("Horizontal");
         moveDirection.y = Input.GetAxisRaw("Vertical");
+
         if (moveDirection != Vector2.zero)
         {
             lastDirection = new Vector2(moveDirection.x, moveDirection.y);
@@ -39,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
-        rd2d.velocity = moveDirection.normalized * playerManager.characterSO.moveSpeed;
+        rd2d.velocity = moveDirection.normalized * playerManager.playerStat.currentMoveSpeed;
     }
 
 }
