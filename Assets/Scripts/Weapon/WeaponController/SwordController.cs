@@ -4,10 +4,11 @@ public class SwordController : BaseWeaponController
     protected override void Attack()
     {
         base.Attack();
-        Transform swordTransform = Instantiate(weaponSO.transformPrefab);
-        swordTransform.transform.position = transform.position;
-        BaseProjectileWeaponBehaviour swordBehaviour = swordTransform.GetComponent<BaseProjectileWeaponBehaviour>();
+        GameObject sword = Instantiate(weaponSO.prefab);
+        sword.transform.position = transform.position;
+        BaseProjectileWeaponBehaviour swordBehaviour = sword.GetComponent<BaseProjectileWeaponBehaviour>();
 
+        swordBehaviour.weaponSO = weaponSO;
         swordBehaviour.SetDirection(PlayerManager.Instance.playerMovement.lastDirection.normalized);
 
 

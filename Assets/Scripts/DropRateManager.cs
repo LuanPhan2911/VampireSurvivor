@@ -14,9 +14,18 @@ public class DropRateManager : MonoBehaviour
     [SerializeField] private List<Drop> dropList;
 
 
+    private void OnDestroy()
+    {
+        if (!gameObject.scene.isLoaded)
+        {
+            // is loaded= true: play mode running
+            //is loaded =false: play mode stop
+            return;
+        }
+        SpawnItem();
+    }
 
-
-    public void SpawnItem()
+    private void SpawnItem()
     {
         // drop item when enemy destroy
 

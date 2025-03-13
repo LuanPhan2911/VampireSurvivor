@@ -16,6 +16,6 @@ public class BreakableProp : MonoBehaviour, ITakeDamageable
     private void Kill()
     {
         Destroy(gameObject);
-        gameObject.GetComponent<DropRateManager>().SpawnItem();
+
     }
 }

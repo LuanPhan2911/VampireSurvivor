@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 143b7239f92351e4cb12456e881ed53d, type: 3}
-  m_Name: GarlicCharacter
+  m_Script: {fileID: 11500000, guid: 63b3bc556a14f204fa1501bda0baff63, type: 3}
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  weaponControlerPrefab: {fileID: 4600972539235998833, guid: bf6c69302b69d42439570bfca6c4a55d, type: 3}
-  maxHp: 100
-  recovery: 1
-  moveSpeed: 5
-  might: 1
-  projectileSpeed: 0
-  magnet: 1.5
+  prefab: {fileID: 4961694367365485171, guid: a492052b523be2f40868b3be02c45f7a, type: 3}
+  damage: 5
+  speed: 10
+  cooldownDuration: 2
+  pierce: 1
+  level: 1
+  nextLevelWeaponSO: {fileID: 0}

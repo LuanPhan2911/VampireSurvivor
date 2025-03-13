@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143b7239f92351e4cb12456e881ed53d, type: 3}
   m_Name: SwordCharacter
   m_EditorClassIdentifier: 
-  statingWeapon: {fileID: 1613520402970867988, guid: 57ddae08a6d13b14682f53e01c9a8c9a, type: 3}
+  weaponControlerPrefab: {fileID: 1613520402970867988, guid: 57ddae08a6d13b14682f53e01c9a8c9a, type: 3}
   maxHp: 100
   recovery: 1
   moveSpeed: 5
-  might: 0
+  might: 1
   projectileSpeed: 0
   magnet: 1.5

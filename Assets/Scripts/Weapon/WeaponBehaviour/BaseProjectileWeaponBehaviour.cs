@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class BaseProjectileWeaponBehaviour : MonoBehaviour
 {
-    protected Vector3 direction;
-    public float destroyAfterSeconds;
     public WeaponSO weaponSO;
+    protected Vector3 direction;
+
+
 
 
     protected float currentDamage;
@@ -22,11 +23,15 @@ public class BaseProjectileWeaponBehaviour : MonoBehaviour
     }
     protected virtual void Start()
     {
-        Destroy(gameObject, destroyAfterSeconds);
+        Destroy(gameObject, weaponSO.destroyAfterSeconds);
     }
     protected virtual void Update()
     {
 
+    }
+    public float GetCurrentDamage()
+    {
+        return currentDamage *= PlayerManager.Instance.playerStat.currentMight;
     }
 
     public void SetDirection(Vector3 direction)
@@ -90,7 +95,7 @@ public class BaseProjectileWeaponBehaviour : MonoBehaviour
         if (collision.TryGetComponent<ITakeDamageable>(out var damageable))
         {
 
-            damageable.TakeDamage(currentDamage);
+            damageable.TakeDamage(GetCurrentDamage());
             ReducePierce();
         }
     }

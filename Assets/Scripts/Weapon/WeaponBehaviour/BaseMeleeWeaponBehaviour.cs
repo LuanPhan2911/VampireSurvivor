@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BaseMeleeWeaponBehaviour : MonoBehaviour
 {
-    public float destroyAfterSeconds;
+
     public WeaponSO weaponSO;
 
     protected float currentDamage;
@@ -20,13 +20,17 @@ public class BaseMeleeWeaponBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {
-        Destroy(gameObject, destroyAfterSeconds);
+        Destroy(gameObject, weaponSO.destroyAfterSeconds);
     }
     protected virtual void Update()
     {
 
     }
 
+    public float GetCurrentDamage()
+    {
+        return currentDamage *= PlayerManager.Instance.playerStat.currentMight;
+    }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         //if (collision.CompareTag(EnemyController.ENEMY_TAG))
@@ -37,7 +41,7 @@ public class BaseMeleeWeaponBehaviour : MonoBehaviour
         //}
         if (collision.TryGetComponent<ITakeDamageable>(out var damageable))
         {
-            damageable.TakeDamage(currentDamage);
+            damageable.TakeDamage(GetCurrentDamage());
 
         }
     }

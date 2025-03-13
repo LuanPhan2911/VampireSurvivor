@@ -7,6 +7,7 @@ public class GarlicController : BaseWeaponController
     {
         base.Attack();
 
-        Transform garlicTransform = Instantiate(weaponSO.transformPrefab, transform);
+        GameObject garlic = Instantiate(weaponSO.prefab, transform);
+        garlic.GetComponent<BaseMeleeWeaponBehaviour>().weaponSO = weaponSO;
     }
 }

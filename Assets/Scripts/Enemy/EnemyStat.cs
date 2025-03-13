@@ -40,7 +40,7 @@ public class EnemyStat : MonoBehaviour, ITakeDamageable
 
     private void Kill()
     {
-        gameObject.GetComponent<DropRateManager>().SpawnItem();
+
         EnemySpawner.Instance.OnEnemyKilled();
         Destroy(gameObject);
     }

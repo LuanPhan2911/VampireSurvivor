@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/Character")]
 public class CharacterSO : ScriptableObject
 {
-    public GameObject statingWeapon;
+    public GameObject weaponControlerPrefab;
     public float maxHp;
     public float recovery;
     public float moveSpeed;

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b3bc556a14f204fa1501bda0baff63, type: 3}
+  m_Name: Sword lv2
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4961694367365485171, guid: b01324e2e472624498a542dc08213cb9, type: 3}
+  damage: 5
+  speed: 10
+  cooldownDuration: 1.5
+  pierce: 1
+  level: 2
+  nextLevelWeaponSO: {fileID: 11400000}

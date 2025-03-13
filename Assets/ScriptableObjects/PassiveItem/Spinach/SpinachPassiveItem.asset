@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 143b7239f92351e4cb12456e881ed53d, type: 3}
-  m_Name: GarlicCharacter
+  m_Script: {fileID: 11500000, guid: f9f4516d2bd363546a2861916a4ffd2a, type: 3}
+  m_Name: SpinachPassiveItem
   m_EditorClassIdentifier: 
-  weaponControlerPrefab: {fileID: 4600972539235998833, guid: bf6c69302b69d42439570bfca6c4a55d, type: 3}
-  maxHp: 100
-  recovery: 1
-  moveSpeed: 5
-  might: 1
-  projectileSpeed: 0
-  magnet: 1.5
+  multiplier: 100
+  level: 1
+  nextLevelPrefab: {fileID: 1462479644992430297, guid: e8a1f57507aa7cd4eafaecc55ab28767, type: 3}
