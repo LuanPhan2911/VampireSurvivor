@@ -15,7 +15,9 @@ MonoBehaviour:
   prefab: {fileID: 4961694367365485171, guid: a492052b523be2f40868b3be02c45f7a, type: 3}
   damage: 5
   speed: 10
-  cooldownDuration: 2
+  cooldownDuration: 3
+  destroyAfterSeconds: 2
   pierce: 1
   level: 1
-  nextLevelWeaponSO: {fileID: 0}
+  nextLevelWeaponSO: {fileID: 11400000, guid: b7a28a666a54fd242b0d0576b877a0ea, type: 2}
+  icon: {fileID: -803685765, guid: 4d76fb9ba940553448019b5550c7e236, type: 3}

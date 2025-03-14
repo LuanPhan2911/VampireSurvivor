@@ -9,10 +9,10 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public Animator animator;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public PlayerStat playerStat;
-    [HideInInspector] public InventoryManager inventoryManager;
 
 
-    public static PlayerManager Instance;
+
+    public static PlayerManager Instance { get; private set; }
 
 
     private void Awake()
@@ -32,6 +32,6 @@ public class PlayerManager : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerStat = GetComponent<PlayerStat>();
-        inventoryManager = GetComponent<InventoryManager>();
+
     }
 }

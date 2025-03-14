@@ -5,13 +5,19 @@ public class PlayerStat : MonoBehaviour
 {
 
     [Header("Player Stats")]
-    [SerializeField] private CharacterSO characterSO;
+    public CharacterSO characterSO;
     [SerializeField] private GameObject passiveItemPrefab;
+
+
+
+
     public float currentHp;
     public float currentRecovery;
     public float currentMight;
     public float currentMoveSpeed;
     public float currentMagnet;
+    public float currentProjectileSpeed;
+
 
 
 
@@ -35,7 +41,7 @@ public class PlayerStat : MonoBehaviour
 
     private int weaponIndex;
     private int passiveItemIndex;
-    private InventoryManager inventoryManager;
+
 
 
     private void Awake()
@@ -47,13 +53,14 @@ public class PlayerStat : MonoBehaviour
             CharacterSelection.Instance.Destroy();
         }
 
-        inventoryManager = PlayerManager.Instance.inventoryManager;
+
 
         currentHp = characterSO.maxHp;
         currentMight = characterSO.might;
         currentRecovery = characterSO.recovery;
         currentMoveSpeed = characterSO.moveSpeed;
         currentMagnet = characterSO.magnet;
+        currentProjectileSpeed = characterSO.projectileSpeed;
 
         experienceCap = levelRangeList[0].experienceCapIncreased;
 
@@ -117,7 +124,7 @@ public class PlayerStat : MonoBehaviour
     }
     private void Die()
     {
-        Debug.Log("Player die");
+        GameManager.Instance.GameOver();
     }
     public void RestoreHealth(float amount)
     {
@@ -129,26 +136,26 @@ public class PlayerStat : MonoBehaviour
     }
     private void SpawnWeapon(GameObject weaponControllerPrefab)
     {
-        if (weaponIndex >= inventoryManager.weaponSlotList.Count - 1)
+        if (weaponIndex >= InventoryManager.Instance.weaponSlotList.Count - 1)
         {
             return;
         }
 
         GameObject weaponController = Instantiate(weaponControllerPrefab, transform);
 
-        inventoryManager.AddWeapon(weaponIndex, weaponController.GetComponent<BaseWeaponController>());
+        InventoryManager.Instance.AddWeapon(weaponIndex, weaponController.GetComponent<BaseWeaponController>());
         weaponIndex++;
     }
     private void SpawnPassiveItem(GameObject passiveItemPrefab)
     {
-        if (passiveItemIndex >= inventoryManager.passiveItemSlotList.Count - 1)
+        if (passiveItemIndex >= InventoryManager.Instance.passiveItemSlotList.Count - 1)
         {
             return;
         }
 
         GameObject passiveItem = Instantiate(passiveItemPrefab, transform);
 
-        inventoryManager.AddPassiveItem(passiveItemIndex, passiveItem.GetComponent<BasePassiveItem>());
+        InventoryManager.Instance.AddPassiveItem(passiveItemIndex, passiveItem.GetComponent<BasePassiveItem>());
         passiveItemIndex++;
     }
 

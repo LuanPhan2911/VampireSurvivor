@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CharacterSelection : MonoBehaviour
 {
-    public static CharacterSelection Instance;
+    public static CharacterSelection Instance { get; private set; }
 
     private CharacterSO characterSO;
     private void Awake()

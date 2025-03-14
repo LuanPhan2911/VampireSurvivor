@@ -4,6 +4,9 @@ using UnityEngine;
 public class CharacterSO : ScriptableObject
 {
     public GameObject weaponControlerPrefab;
+
+    public string characterName;
+    public Sprite icon;
     public float maxHp;
     public float recovery;
     public float moveSpeed;
