@@ -4,6 +4,9 @@ using UnityEngine;
 public class WeaponSO : ScriptableObject
 {
     public GameObject prefab;
+
+    public string weaponName;
+    public string description;
     public float damage;
     public float speed;
     public float cooldownDuration;
@@ -15,3 +18,5 @@ public class WeaponSO : ScriptableObject
 
     public Sprite icon;
 }
+
+

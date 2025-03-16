@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f4516d2bd363546a2861916a4ffd2a, type: 3}
   m_Name: SpinachPassiveItem
   m_EditorClassIdentifier: 
+  passiveItemName: Spinach lv1
+  descriotion: 
   multiplier: 100
   level: 1
   nextLevelPassiveItemSO: {fileID: 11400000, guid: 9c6b5d02fe702414d8b310bcc2187f26, type: 2}

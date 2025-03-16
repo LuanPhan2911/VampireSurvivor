@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RedBatEnemy
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  maxHp: 10
+  maxHp: 5
   damgage: 10

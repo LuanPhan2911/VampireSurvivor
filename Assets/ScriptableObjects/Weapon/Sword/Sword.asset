@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   prefab: {fileID: 4961694367365485171, guid: a492052b523be2f40868b3be02c45f7a, type: 3}
+  weaponName: Sword lv1
+  description: 
   damage: 5
   speed: 10
   cooldownDuration: 3

@@ -3,13 +3,10 @@ using UnityEngine;
 
 public class GarlicBehaviour : BaseMeleeWeaponBehaviour
 {
-    private List<GameObject> enemyDamagedList;
+    private List<GameObject> enemyDamagedList = new List<GameObject>();
 
-    protected override void Awake()
-    {
-        base.Awake();
-        enemyDamagedList = new List<GameObject>();
-    }
+
+
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (!enemyDamagedList.Contains(collision.gameObject))

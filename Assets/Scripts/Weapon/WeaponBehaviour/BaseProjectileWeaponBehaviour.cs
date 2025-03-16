@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BaseProjectileWeaponBehaviour : MonoBehaviour
 {
-    public WeaponSO weaponSO;
+    [HideInInspector] public WeaponSO weaponSO;
     protected Vector3 direction;
 
 
@@ -16,13 +16,15 @@ public class BaseProjectileWeaponBehaviour : MonoBehaviour
 
     protected virtual void Awake()
     {
+
+    }
+    protected virtual void Start()
+    {
         currentDamage = weaponSO.damage;
         currentSpeed = weaponSO.speed;
         currentCooldownDuration = weaponSO.cooldownDuration;
         currentPierce = weaponSO.pierce;
-    }
-    protected virtual void Start()
-    {
+
         Destroy(gameObject, weaponSO.destroyAfterSeconds);
     }
     protected virtual void Update()

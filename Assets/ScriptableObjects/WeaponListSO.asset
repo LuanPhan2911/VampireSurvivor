@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9f4516d2bd363546a2861916a4ffd2a, type: 3}
-  m_Name: SpinachPassiveItem lv2
+  m_Script: {fileID: 11500000, guid: bf25c0b67a7ccc241b1b15d0f1dd2b8c, type: 3}
+  m_Name: WeaponListSO
   m_EditorClassIdentifier: 
-  passiveItemName: Spinach lv2
-  descriotion: 
-  multiplier: 125
-  level: 2
-  nextLevelPassiveItemSO: {fileID: 0}
-  icon: {fileID: 0}
+  weaponControllerList:
+  - {fileID: 8232942174451883492, guid: bf6c69302b69d42439570bfca6c4a55d, type: 3}
+  - {fileID: 5823465081814318452, guid: 57ddae08a6d13b14682f53e01c9a8c9a, type: 3}

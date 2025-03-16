@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSO: {fileID: 11400000, guid: e681d5cafa716d440b14e0b4a9685a95, type: 2}
+  slotIndex: 0

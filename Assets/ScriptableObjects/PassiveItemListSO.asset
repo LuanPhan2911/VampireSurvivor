@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9f4516d2bd363546a2861916a4ffd2a, type: 3}
-  m_Name: SpinachPassiveItem lv2
+  m_Script: {fileID: 11500000, guid: f96a04c38c14eb04db702ad6ad9cf622, type: 3}
+  m_Name: PassiveItemListSO
   m_EditorClassIdentifier: 
-  passiveItemName: Spinach lv2
-  descriotion: 
-  multiplier: 125
-  level: 2
-  nextLevelPassiveItemSO: {fileID: 0}
-  icon: {fileID: 0}
+  passiveItemList:
+  - {fileID: 1755570158846388152, guid: 5d1b1879a9fdec44b9b1576a32f53d97, type: 3}
+  - {fileID: 498454443496165461, guid: 78fca43f2722be34f868d2301cad4e43, type: 3}

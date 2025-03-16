@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: GarlicCharacter
   m_EditorClassIdentifier: 
   weaponControlerPrefab: {fileID: 4600972539235998833, guid: bf6c69302b69d42439570bfca6c4a55d, type: 3}
+  characterName: Garlic Character
+  icon: {fileID: -77849133, guid: 76a87443cef5e574aad172d86657e768, type: 3}
   maxHp: 100
   recovery: 1
   moveSpeed: 5

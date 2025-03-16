@@ -3,7 +3,7 @@ using UnityEngine;
 public class BaseMeleeWeaponBehaviour : MonoBehaviour
 {
 
-    public WeaponSO weaponSO;
+    [HideInInspector] public WeaponSO weaponSO;
 
     protected float currentDamage;
     protected float currentSpeed;
@@ -12,14 +12,16 @@ public class BaseMeleeWeaponBehaviour : MonoBehaviour
 
     protected virtual void Awake()
     {
-        currentDamage = weaponSO.damage;
-        currentSpeed = weaponSO.speed;
-        currentCooldownDuration = weaponSO.cooldownDuration;
-        currentPierce = weaponSO.pierce;
+
     }
 
     protected virtual void Start()
     {
+        currentDamage = weaponSO.damage;
+        currentSpeed = weaponSO.speed;
+        currentCooldownDuration = weaponSO.cooldownDuration;
+        currentPierce = weaponSO.pierce;
+
         Destroy(gameObject, weaponSO.destroyAfterSeconds);
     }
     protected virtual void Update()

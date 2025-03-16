@@ -17,7 +17,8 @@ public class GameOverUI : MonoBehaviour
         GameManager.Instance.OnGameStateChanged += GameManager_OnGameStateChanged;
         doneButton.onClick.AddListener(() =>
         {
-            SceneController.Instance.LoadScene(SceneController.MENU_SCENE);
+            //SceneController.Instance.LoadScene(SceneController.MENU_SCENE);
+
         });
         Hide();
 
@@ -42,7 +43,7 @@ public class GameOverUI : MonoBehaviour
     private void UpdateText()
     {
         levelReachedValueText.text = PlayerManager.Instance.playerStat.level.ToString();
-        timeSurvivalValueText.text = "No set value";
+        timeSurvivalValueText.text = GameManager.Instance.GetStopWatchTimeString();
     }
     private void UpdateCharacter()
     {
@@ -51,18 +52,18 @@ public class GameOverUI : MonoBehaviour
     }
     private void UpdateInventory()
     {
-        for (int i = 0; i < InventoryManager.Instance.weaponSlotList.Count; i++)
+        for (int i = 0; i < InventoryManager.Instance.weaponControllerList.Count; i++)
         {
-            if (InventoryManager.Instance.weaponSlotList[i] != null)
+            if (InventoryManager.Instance.weaponControllerList[i] != null)
             {
-                inventoryUI.SetWeaponSlotUI(i, InventoryManager.Instance.weaponSlotList[i].weaponSO.icon);
+                inventoryUI.SetWeaponSlotUI(i, InventoryManager.Instance.weaponControllerList[i].weaponSO.icon);
             }
         }
-        for (int i = 0; i < InventoryManager.Instance.passiveItemSlotList.Count; i++)
+        for (int i = 0; i < InventoryManager.Instance.passiveItemList.Count; i++)
         {
-            if (InventoryManager.Instance.passiveItemSlotList[i] != null)
+            if (InventoryManager.Instance.passiveItemList[i] != null)
             {
-                inventoryUI.SetPassiveItemSlotUI(i, InventoryManager.Instance.passiveItemSlotList[i].passiveItemSO.icon);
+                inventoryUI.SetPassiveItemSlotUI(i, InventoryManager.Instance.passiveItemList[i].passiveItemSO.icon);
             }
         }
     }

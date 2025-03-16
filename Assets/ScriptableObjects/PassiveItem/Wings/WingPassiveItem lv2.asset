@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f4516d2bd363546a2861916a4ffd2a, type: 3}
   m_Name: WingPassiveItem lv2
   m_EditorClassIdentifier: 
+  passiveItemName: Wings lv2
+  descriotion: 
   multiplier: 75
   level: 2
-  nextLevelPrefab: {fileID: 0}
+  nextLevelPassiveItemSO: {fileID: 0}
+  icon: {fileID: 0}

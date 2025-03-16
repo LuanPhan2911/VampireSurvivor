@@ -18,61 +18,95 @@ public class InventoryManager : MonoBehaviour
     }
 
     [Header("Weapon")]
-    public List<BaseWeaponController> weaponSlotList = new List<BaseWeaponController>(6);
-    public int[] weaponLevelList = new int[6];
+    public List<BaseWeaponController> weaponControllerList;
+    public int maxWaponControllerLenght = 6;
+
 
     [Header("Passive Item")]
-    public List<BasePassiveItem> passiveItemSlotList = new List<BasePassiveItem>(6);
-    public int[] passiveItemLevelList = new int[6];
+    public List<BasePassiveItem> passiveItemList;
+    public int maxPassiveItemLenght = 6;
+
 
     [Header("Inventory UI")]
     [SerializeField] private InventoryUI inventoryUI;
 
 
+    private int weaponIndex;
+    private int passiveItemIndex;
+
+    public List<WeaponSO> GetWeaponSOList()
+    {
+        List<WeaponSO> weaponSOList = new List<WeaponSO>();
+        foreach (var weaponSlot in weaponControllerList)
+        {
+            weaponSOList.Add(weaponSlot.weaponSO);
+        }
+        return weaponSOList;
+    }
+    public List<PassiveItemSO> GetPassiveItemSOList()
+    {
+        List<PassiveItemSO> passiveItemSOList = new List<PassiveItemSO>();
+        foreach (var passiveItemSlot in passiveItemList)
+        {
+            passiveItemSOList.Add(passiveItemSlot.passiveItemSO);
+        }
+        return passiveItemSOList;
+    }
+
+
     public void AddWeapon(int slotIndex, BaseWeaponController weaponController)
     {
-        weaponSlotList[slotIndex] = weaponController;
-        weaponLevelList[slotIndex] = weaponController.weaponSO.level;
+        weaponControllerList.Add(weaponController);
+        weaponController.slotIndex = slotIndex;
+
         inventoryUI.SetWeaponSlotUI(slotIndex, weaponController.weaponSO.icon);
     }
     public void AddPassiveItem(int slotIndex, BasePassiveItem passiveItem)
     {
-        passiveItemSlotList[slotIndex] = passiveItem;
-        passiveItemLevelList[slotIndex] = passiveItem.passiveItemSO.level;
+        passiveItemList.Add(passiveItem);
+        passiveItem.slotIndex = slotIndex;
+
         inventoryUI.SetPassiveItemSlotUI(slotIndex, passiveItem.passiveItemSO.icon);
     }
-    public void LevelUpWeapon(int slotIndex)
+    public void LevelUpWeapon(BaseWeaponController weaponController)
     {
-        if (weaponSlotList.Count > slotIndex)
+
+        weaponController.LevelUp();
+        inventoryUI.SetWeaponSlotUI(weaponController.slotIndex, weaponController.weaponSO.icon);
+    }
+
+
+    public void LevelUpPassiveItem(BasePassiveItem passiveItem)
+    {
+        passiveItem.LevelUp();
+        inventoryUI.SetPassiveItemSlotUI(passiveItem.slotIndex, passiveItem.passiveItemSO.icon);
+    }
+
+
+    public void SpawnWeapon(GameObject weaponControllerPrefab)
+    {
+        if (weaponIndex >= maxWaponControllerLenght)
         {
-
-            BaseWeaponController weaponController = weaponSlotList[slotIndex];
-            if (!weaponController.weaponSO.nextLevelWeaponSO)
-            {
-                Debug.LogError("No next level for" + weaponController.weaponSO);
-                return;
-            }
-            weaponController.weaponSO = weaponController.weaponSO.nextLevelWeaponSO;
-            weaponLevelList[slotIndex] = weaponController.weaponSO.level;
-            inventoryUI.SetWeaponSlotUI(slotIndex, weaponController.weaponSO.icon);
-
+            return;
         }
 
+        GameObject weaponController = Instantiate(weaponControllerPrefab,
+            PlayerManager.Instance.transform);
+        AddWeapon(weaponIndex, weaponController.GetComponent<BaseWeaponController>());
+        weaponIndex++;
     }
-    public void LevelUpPassiveItem(int slotIndex)
+    public void SpawnPassiveItem(GameObject passiveItemPrefab)
     {
-        if (passiveItemSlotList.Count > slotIndex)
+        if (passiveItemIndex >= maxPassiveItemLenght)
         {
-            BasePassiveItem passiveItem = passiveItemSlotList[slotIndex];
-            if (!passiveItem.passiveItemSO.nextLevelPassiveItemSO)
-            {
-                Debug.LogError("No next level for" + passiveItem.passiveItemSO);
-                return;
-            }
-            passiveItem.passiveItemSO = passiveItem.passiveItemSO.nextLevelPassiveItemSO;
-            passiveItemLevelList[slotIndex] = passiveItem.passiveItemSO.level;
-            inventoryUI.SetPassiveItemSlotUI(slotIndex, passiveItem.passiveItemSO.icon);
+            return;
         }
 
+        GameObject passiveItem = Instantiate(passiveItemPrefab, PlayerManager.Instance.transform);
+
+        AddPassiveItem(passiveItemIndex, passiveItem.GetComponent<BasePassiveItem>());
+        passiveItemIndex++;
     }
+
+
 }

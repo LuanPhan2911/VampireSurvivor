@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Garlic lv2
   m_EditorClassIdentifier: 
   prefab: {fileID: 9089461181151669796, guid: 6f8b2dc36f9c39446b7f4848054013a5, type: 3}
+  weaponName: Garlic lv2
+  description: 
   damage: 5
   speed: 0
   cooldownDuration: 4

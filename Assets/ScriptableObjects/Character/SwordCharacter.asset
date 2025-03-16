@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: SwordCharacter
   m_EditorClassIdentifier: 
   weaponControlerPrefab: {fileID: 1613520402970867988, guid: 57ddae08a6d13b14682f53e01c9a8c9a, type: 3}
+  characterName: Sword Character
+  icon: {fileID: -77849133, guid: 76a87443cef5e574aad172d86657e768, type: 3}
   maxHp: 100
   recovery: 1
   moveSpeed: 5

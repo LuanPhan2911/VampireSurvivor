@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Sword lv2
   m_EditorClassIdentifier: 
   prefab: {fileID: 4961694367365485171, guid: b01324e2e472624498a542dc08213cb9, type: 3}
+  weaponName: Sword lv2
+  description: 
   damage: 5
   speed: 10
   cooldownDuration: 1.5

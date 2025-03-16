@@ -7,6 +7,26 @@ public class GameManager : MonoBehaviour
 
 
 
+
+    public enum GameState
+    {
+        GamePlaying,
+        GamePause,
+        GameOver,
+        PlayerLevelUp
+    }
+    public GameState gameState;
+    public bool isGamePaused;
+    public class OnGameStateChangedEventArgs : EventArgs
+    {
+        public GameState gameState;
+    }
+    public event EventHandler<OnGameStateChangedEventArgs> OnGameStateChanged;
+
+    [Header("Stopwatch")]
+    [SerializeField] private float survivalTimerLimit;
+    public float survivalTime { get; private set; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -18,24 +38,16 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public enum GameState
-    {
-        GamePlaying,
-        GamePause,
-        GameOver,
-    }
-    public GameState gameState;
-    public bool isGamePaused;
-    public class OnGameStateChangedEventArgs : EventArgs
-    {
-        public GameState gameState;
-    }
-    public event EventHandler<OnGameStateChangedEventArgs> OnGameStateChanged;
-
     private void Update()
     {
 
         CheckGamePauseAndResume();
+        switch (gameState)
+        {
+            case GameState.GamePlaying:
+                UpdateSurvialTime();
+                break;
+        }
     }
 
     public void SetGameState(GameState state)
@@ -48,18 +60,24 @@ public class GameManager : MonoBehaviour
     }
     public void PauseGame()
     {
-        isGamePaused = true;
-        SetGameState(GameState.GamePause);
-        PlayerManager.Instance.playerMovement.enabled = false;
-        Time.timeScale = 0;
+        if (gameState == GameState.GamePlaying)
+        {
+            isGamePaused = true;
+            SetGameState(GameState.GamePause);
+            PlayerManager.Instance.playerMovement.enabled = false;
+            Time.timeScale = 0;
+        }
 
     }
     public void ResumeGame()
     {
-        isGamePaused = false;
-        SetGameState(GameState.GamePlaying);
-        PlayerManager.Instance.playerMovement.enabled = true;
-        Time.timeScale = 1f;
+        if (gameState == GameState.GamePause)
+        {
+            isGamePaused = false;
+            SetGameState(GameState.GamePlaying);
+            PlayerManager.Instance.playerMovement.enabled = true;
+            Time.timeScale = 1f;
+        }
     }
     private void CheckGamePauseAndResume()
     {
@@ -82,5 +100,31 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.GameOver);
         Time.timeScale = 0;
         PlayerManager.Instance.playerMovement.enabled = false;
+    }
+
+    private void UpdateSurvialTime()
+    {
+        survivalTime += Time.deltaTime;
+        if (survivalTime > survivalTimerLimit)
+        {
+            GameOver();
+        }
+    }
+
+    public string GetStopWatchTimeString()
+    {
+        int minute = (int)survivalTime / 60;
+        int second = (int)survivalTime % 60;
+        return string.Format("{0:00}:{1:00}", minute, second);
+    }
+    public void StartPlayerLevelUp()
+    {
+        SetGameState(GameState.PlayerLevelUp);
+        Time.timeScale = 0;
+    }
+    public void EndPlayerLevelUp()
+    {
+        SetGameState(GameState.GamePlaying);
+        Time.timeScale = 1f;
     }
 }

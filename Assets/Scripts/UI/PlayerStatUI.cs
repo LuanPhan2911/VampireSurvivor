@@ -4,9 +4,11 @@ using UnityEngine;
 public class PlayerStatUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI recoveryText;
     [SerializeField] private TextMeshProUGUI moveSpeedText;
     [SerializeField] private TextMeshProUGUI mightText;
     [SerializeField] private TextMeshProUGUI projectileSpeedText;
+    [SerializeField] private TextMeshProUGUI magnetText;
 
     private void Start()
     {
@@ -29,9 +31,11 @@ public class PlayerStatUI : MonoBehaviour
     private void UpdateVisual(PlayerStat playerStat)
     {
         healthText.text = $"Health: {playerStat.currentHp}";
+        recoveryText.text = $"Recovery: {playerStat.currentRecovery}";
         moveSpeedText.text = $"Move speed: {playerStat.currentMoveSpeed}";
         mightText.text = $"Might: {playerStat.currentMight}";
         projectileSpeedText.text = $"Projectile speed: {playerStat.currentProjectileSpeed}";
+        magnetText.text = $"Magnet: {playerStat.currentMagnet}";
     }
 
 }
