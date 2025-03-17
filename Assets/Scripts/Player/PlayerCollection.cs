@@ -22,7 +22,7 @@ public class PlayerCollection : MonoBehaviour
         {
             Rigidbody2D rigidbody2D = collision.gameObject.GetComponent<Rigidbody2D>();
             // pull direction : pull gem to player
-            Vector2 pullDirection = (transform.position - collision.transform.position).normalized;
+            Vector3 pullDirection = (transform.position - collision.transform.position).normalized;
 
             rigidbody2D.AddForce(pullDirection * pullSpeed);
             collectable.Collect();

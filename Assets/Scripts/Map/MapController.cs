@@ -19,6 +19,9 @@ public class MapController : MonoBehaviour
     public float optimizeTimerMax;
     private float optimizeTimer;
 
+    private Vector3 moveDir;
+    private Vector3 lastDir;
+
     private void Awake()
     {
         if (Instance == null)
@@ -31,10 +34,18 @@ public class MapController : MonoBehaviour
         }
 
     }
+    private void Start()
+    {
 
+        lastDir = PlayerManager.Instance.transform.position;
+    }
 
     private void Update()
     {
+        moveDir = PlayerManager.Instance.transform.position - lastDir;
+        lastDir = PlayerManager.Instance.transform.position;
+
+        moveDir.Normalize();
         if (currentChunk == null)
         {
             return;
@@ -54,10 +65,10 @@ public class MapController : MonoBehaviour
     }
     private void ChunkChecker()
     {
-        if (PlayerManager.Instance.playerMovement.moveDirection != Vector2.zero)
+        if (moveDir != Vector3.zero)
         {
 
-            foreach (var direction in GetSideDirection(PlayerManager.Instance.playerMovement.moveDirection))
+            foreach (var direction in GetSideDirection(moveDir))
             {
                 Vector2 checkPosition = (Vector2)currentChunk.transform.position + direction.normalized * terrainSize;
 

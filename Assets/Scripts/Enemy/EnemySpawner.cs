@@ -37,6 +37,8 @@ public class EnemySpawner : MonoBehaviour
 
     public static EnemySpawner Instance;
 
+    private bool isActiveWave = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -57,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         if (currentWaveCount < waveList.Count &&
-           waveList[currentWaveCount].spawnCount == 0)
+           waveList[currentWaveCount].spawnCount == 0 && !isActiveWave)
 
         {
             StartCoroutine(StartNextWave());
@@ -74,12 +76,14 @@ public class EnemySpawner : MonoBehaviour
     }
     private IEnumerator StartNextWave()
     {
+        isActiveWave = true;
         yield return new WaitForSeconds(waveInterval);
         // if there are more waves start after current way, move on to next wave
         if (currentWaveCount < waveList.Count - 1)
         {
             currentWaveCount++;
             CalculateWaveQuota();
+            isActiveWave = false;
         }
     }
     private void CalculateWaveQuota()
@@ -118,15 +122,16 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
-        if (enemyAlive < maxEnemyAllowed)
-        {
-            isMaxEnemyReached = false;
-        }
+
 
 
     }
     public void OnEnemyKilled()
     {
         enemyAlive--;
+        if (enemyAlive < maxEnemyAllowed)
+        {
+            isMaxEnemyReached = false;
+        }
     }
 }

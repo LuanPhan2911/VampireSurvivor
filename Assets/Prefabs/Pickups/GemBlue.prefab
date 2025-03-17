@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6648582466816133206}
   - component: {fileID: 105010373931631550}
   - component: {fileID: 2155182490174614340}
+  - component: {fileID: -147635289276946194}
   m_Layer: 0
   m_Name: GemBlue
   m_TagString: Untagged
@@ -162,3 +163,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-147635289276946194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3285537911431139435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5470053bd0dc5324fb7f3ae3f64e51a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frequency: 3
+  magnitude: 0.1
+  direction: {x: 0, y: 1, z: 0}

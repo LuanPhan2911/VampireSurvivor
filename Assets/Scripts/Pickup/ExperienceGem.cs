@@ -1,8 +1,16 @@
-public class ExperienceGem : Pickup, ICollectable
+public class ExperienceGem : Pickup
 {
     public int experienceGranted;
-    public void Collect()
+    public override void Collect()
     {
+        if (isPicked)
+        {
+            return;
+        }
+        else
+        {
+            base.Collect();
+        }
         PlayerManager.Instance.playerStat.InscreaseExperience(experienceGranted);
     }
 
